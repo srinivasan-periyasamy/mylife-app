@@ -416,13 +416,14 @@ function saveName() {
   }
   localStorage.setItem('mylife_username', name);
   document.getElementById('userName').textContent = name + '!';
-  document.getElementById('nameModal').style.display = 'none';
+  document.getElementById('nameModal').classList.remove('show');
+  updateHome();
 }
 
 function changeName() {
   const current = localStorage.getItem('mylife_username') || '';
   document.getElementById('nameInput').value = current;
-  document.getElementById('nameModal').style.display = 'flex';
+  document.getElementById('nameModal').classList.add('show');
   setTimeout(() => document.getElementById('nameInput').focus(), 300);
 }
 
@@ -430,9 +431,9 @@ function loadName() {
   const name = localStorage.getItem('mylife_username');
   if(name) {
     document.getElementById('userName').textContent = name + '!';
-    document.getElementById('nameModal').style.display = 'none';
+    document.getElementById('nameModal').classList.remove('show');
   } else {
-    document.getElementById('nameModal').style.display = 'flex';
+    document.getElementById('nameModal').classList.add('show');
     setTimeout(() => document.getElementById('nameInput').focus(), 300);
   }
 }

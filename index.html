@@ -16,73 +16,23 @@
     --sub: #9090b0; --radius: 18px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
-
-  /* NAME MODAL - FIXED */
-  #nameModal {
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.95);
-    z-index: 99999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh;
   }
-  #nameModal.hidden { display: none !important; }
-  .name-box {
-    background: #1a1a2e;
-    border-radius: 24px;
-    padding: 40px 28px;
-    width: 100%;
-    max-width: 340px;
-    border: 1.5px solid #3a3a5a;
-    text-align: center;
-  }
-  .name-box .emoji { font-size: 64px; display: block; margin-bottom: 20px; }
-  .name-box h2 {
-    font-size: 26px; font-weight: 900; margin-bottom: 10px;
-    background: linear-gradient(135deg, #6C63FF, #FF6584);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  }
-  .name-box p { color: #9090b0; font-size: 15px; margin-bottom: 28px; line-height: 1.5; }
-  #nameInput {
-    width: 100%;
-    background: #0d0d1f;
-    border: 2px solid #3a3a5a;
-    border-radius: 14px;
-    color: #fff;
-    padding: 16px;
-    font-size: 18px;
-    text-align: center;
-    outline: none;
-    margin-bottom: 16px;
-    font-family: inherit;
-    display: block;
-  }
-  #nameInput:focus { border-color: #6C63FF; }
-  #nameInput.error { border-color: #ff4466; }
-  #saveNameBtn {
-    width: 100%;
-    background: linear-gradient(135deg, #6C63FF, #FF6584);
-    border: none;
-    border-radius: 14px;
-    padding: 18px;
-    font-size: 18px;
-    font-weight: 800;
-    color: #fff;
-    cursor: pointer;
-    display: block;
-    letter-spacing: 0.5px;
-  }
-  #saveNameBtn:active { opacity: 0.85; transform: scale(0.98); }
 
   /* NAV */
-  .nav { position: fixed; bottom: 0; left: 0; right: 0; background: #12122a;
-    border-top: 1px solid #2a2a4a; display: flex; justify-content: space-around;
-    padding: 10px 0 env(safe-area-inset-bottom); z-index: 100; }
-  .nav-btn { display: flex; flex-direction: column; align-items: center; gap: 3px;
+  .nav {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: #12122a; border-top: 1px solid #2a2a4a;
+    display: flex; justify-content: space-around;
+    padding: 10px 0 env(safe-area-inset-bottom); z-index: 100;
+  }
+  .nav-btn {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
     background: none; border: none; color: var(--sub); font-size: 10px;
-    cursor: pointer; padding: 6px 12px; border-radius: 12px; transition: all .25s; }
+    cursor: pointer; padding: 6px 12px; border-radius: 12px; transition: all .25s;
+  }
   .nav-btn .icon { font-size: 22px; }
   .nav-btn.active { color: var(--c1); }
   .nav-btn.active .icon { filter: drop-shadow(0 0 6px var(--c1)); }
@@ -100,7 +50,7 @@
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
 
-  /* INPUT */
+  /* INPUTS */
   input[type=text], textarea, select {
     width: 100%; background: #0f0f1a; border: 1.5px solid #2a2a4a;
     border-radius: 12px; color: var(--text); padding: 12px 14px;
@@ -111,11 +61,15 @@
   select option { background: #1a1a2e; }
 
   /* BUTTONS */
-  .btn { border: none; border-radius: 12px; padding: 12px 20px; font-size: 15px;
-    font-weight: 700; cursor: pointer; transition: all .2s;
-    display: inline-flex; align-items: center; gap: 8px; }
-  .btn-primary { background: linear-gradient(135deg, var(--c1), var(--c2));
-    color: #fff; width: 100%; justify-content: center; }
+  .btn {
+    border: none; border-radius: 12px; padding: 12px 20px;
+    font-size: 15px; font-weight: 700; cursor: pointer; transition: all .2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--c1), var(--c2));
+    color: #fff; width: 100%; justify-content: center;
+  }
   .btn-primary:active { transform: scale(.97); }
   .btn-sm { padding: 7px 14px; font-size: 13px; border-radius: 9px; }
   .btn-danger { background: #ff4466; color: #fff; }
@@ -125,61 +79,113 @@
   /* HOME */
   .home-greeting { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
   .home-date { color: var(--sub); font-size: 13px; }
-  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0 22px; }
-  .stat-card { border-radius: var(--radius); padding: 18px; display: flex; flex-direction: column; gap: 6px; }
+  .home-top-row {
+    display: flex; justify-content: space-between;
+    align-items: center; margin-bottom: 22px; margin-top: 4px;
+  }
+  .change-name-btn {
+    background: #1a1a2e; border: 1.5px solid #2a2a4a;
+    border-radius: 10px; color: var(--sub); font-size: 12px;
+    cursor: pointer; padding: 6px 12px;
+  }
+  .change-name-btn:active { background: #2a2a4a; }
+  .stats-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px; margin-bottom: 22px;
+  }
+  .stat-card {
+    border-radius: var(--radius); padding: 18px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
   .stat-card .num { font-size: 32px; font-weight: 900; }
   .stat-card .lbl { font-size: 12px; opacity: .8; }
   .s1 { background: linear-gradient(135deg, #6C63FF, #a78bfa); }
   .s2 { background: linear-gradient(135deg, #FF6584, #f97316); }
   .s3 { background: linear-gradient(135deg, #43E97B, #38f9d7); }
   .s4 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
-  .quick-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 22px; }
-  .qa-btn { background: var(--card); border: 1.5px solid #2a2a4a; border-radius: 14px;
-    padding: 16px; display: flex; flex-direction: column; align-items: center;
-    gap: 8px; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--text); }
+  .quick-actions {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; margin-bottom: 22px;
+  }
+  .qa-btn {
+    background: var(--card); border: 1.5px solid #2a2a4a;
+    border-radius: 14px; padding: 16px;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 8px; cursor: pointer; font-size: 13px;
+    font-weight: 600; color: var(--text); transition: all .2s;
+  }
+  .qa-btn:active { transform: scale(.96); }
   .qa-btn .qa-icon { font-size: 28px; }
   .today-section h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
-  .change-name-btn { background: none; border: none; color: var(--sub); font-size: 12px; cursor: pointer; }
 
   /* TASKS */
-  .task-item { display: flex; align-items: center; gap: 12px; padding: 14px 16px;
-    background: var(--card); border-radius: 14px; margin-bottom: 10px; border: 1.5px solid #2a2a4a; }
+  .task-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px; background: var(--card);
+    border-radius: 14px; margin-bottom: 10px; border: 1.5px solid #2a2a4a;
+  }
   .task-item.done { opacity: .5; }
   .task-item.done .task-text { text-decoration: line-through; }
-  .task-check { width: 24px; height: 24px; border-radius: 50%; border: 2.5px solid var(--c1);
-    display: flex; align-items: center; justify-content: center; cursor: pointer;
-    flex-shrink: 0; background: transparent; }
-  .task-check.checked { background: linear-gradient(135deg, var(--c1), var(--c2)); border-color: transparent; }
+  .task-check {
+    width: 24px; height: 24px; border-radius: 50%;
+    border: 2.5px solid var(--c1); display: flex;
+    align-items: center; justify-content: center;
+    cursor: pointer; flex-shrink: 0; background: transparent;
+  }
+  .task-check.checked {
+    background: linear-gradient(135deg, var(--c1), var(--c2));
+    border-color: transparent;
+  }
   .task-text { flex: 1; font-size: 15px; }
-  .task-del { background: none; border: none; color: #ff4466; font-size: 18px; cursor: pointer; padding: 4px; }
+  .task-del {
+    background: none; border: none; color: #ff4466;
+    font-size: 18px; cursor: pointer; padding: 4px;
+  }
   .priority-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .p-high { background: #ff4466; }
-  .p-med { background: #f7971e; }
-  .p-low { background: #43e97b; }
+  .p-med  { background: #f7971e; }
+  .p-low  { background: #43e97b; }
   .filter-row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
-  .filter-chip { padding: 6px 14px; border-radius: 20px; border: 1.5px solid #2a2a4a;
-    background: transparent; color: var(--sub); font-size: 12px; cursor: pointer; }
+  .filter-chip {
+    padding: 6px 14px; border-radius: 20px; border: 1.5px solid #2a2a4a;
+    background: transparent; color: var(--sub); font-size: 12px; cursor: pointer;
+  }
   .filter-chip.active { background: var(--c1); border-color: var(--c1); color: #fff; }
-  .task-add-form { background: var(--card); border-radius: var(--radius); padding: 16px;
-    margin-bottom: 16px; border: 1.5px solid #2a2a4a; }
+  .task-add-form {
+    background: var(--card); border-radius: var(--radius);
+    padding: 16px; margin-bottom: 16px; border: 1.5px solid #2a2a4a;
+  }
   .task-add-form .row { display: flex; gap: 10px; margin-top: 10px; }
   .task-add-form .row select { flex: 1; }
 
   /* GOALS */
-  .goal-card { background: var(--card); border-radius: var(--radius); padding: 18px;
-    margin-bottom: 14px; border: 1.5px solid #2a2a4a; }
-  .goal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+  .goal-card {
+    background: var(--card); border-radius: var(--radius);
+    padding: 18px; margin-bottom: 14px; border: 1.5px solid #2a2a4a;
+  }
+  .goal-header {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; margin-bottom: 10px;
+  }
   .goal-title { font-size: 17px; font-weight: 700; }
   .goal-cat { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 700; }
   .cat-personal { background: #6C63FF33; color: #a78bfa; }
-  .cat-work { background: #FF658433; color: #ff8fab; }
-  .cat-health { background: #43E97B33; color: #43e97b; }
-  .cat-finance { background: #F7971E33; color: #fbbf24; }
-  .progress-bar { height: 8px; background: #2a2a4a; border-radius: 10px; overflow: hidden; margin: 10px 0; }
+  .cat-work     { background: #FF658433; color: #ff8fab; }
+  .cat-health   { background: #43E97B33; color: #43e97b; }
+  .cat-finance  { background: #F7971E33; color: #fbbf24; }
+  .progress-bar {
+    height: 8px; background: #2a2a4a;
+    border-radius: 10px; overflow: hidden; margin: 10px 0;
+  }
   .progress-fill { height: 100%; border-radius: 10px; transition: width .5s; }
-  .goal-footer { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--sub); }
-  .goal-form { background: var(--card); border-radius: var(--radius); padding: 18px;
-    margin-bottom: 16px; border: 1.5px solid #2a2a4a; }
+  .goal-footer {
+    display: flex; justify-content: space-between;
+    align-items: center; font-size: 12px; color: var(--sub);
+  }
+  .goal-form {
+    background: var(--card); border-radius: var(--radius);
+    padding: 18px; margin-bottom: 16px; border: 1.5px solid #2a2a4a;
+  }
   .goal-form .row { display: flex; gap: 10px; margin-top: 10px; }
   .goal-form .row > * { flex: 1; }
   .progress-input { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
@@ -187,44 +193,69 @@
   .progress-input span { min-width: 40px; text-align: right; font-weight: 700; color: var(--c1); }
 
   /* HABITS */
-  .habit-card { background: var(--card); border-radius: var(--radius); padding: 16px;
-    margin-bottom: 12px; border: 1.5px solid #2a2a4a; }
+  .habit-card {
+    background: var(--card); border-radius: var(--radius);
+    padding: 16px; margin-bottom: 12px; border: 1.5px solid #2a2a4a;
+  }
   .habit-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
   .habit-icon { font-size: 28px; }
   .habit-info { flex: 1; }
   .habit-name { font-size: 16px; font-weight: 700; }
   .habit-streak { font-size: 12px; color: var(--sub); }
-  .habit-check-btn { width: 40px; height: 40px; border-radius: 50%; border: 2.5px solid var(--c3);
-    background: transparent; color: var(--c3); font-size: 20px; cursor: pointer;
-    display: flex; align-items: center; justify-content: center; }
+  .habit-check-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 2.5px solid var(--c3); background: transparent;
+    color: var(--c3); font-size: 20px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
   .habit-check-btn.done { background: var(--c3); color: #111; border-color: var(--c3); }
   .week-dots { display: flex; gap: 6px; }
-  .week-dot { width: 28px; height: 28px; border-radius: 50%; background: #2a2a4a;
-    display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--sub); }
-  .week-dot.done { background: linear-gradient(135deg, var(--c3), #38f9d7); color: #111; font-weight: 700; }
+  .week-dot {
+    width: 28px; height: 28px; border-radius: 50%; background: #2a2a4a;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: var(--sub);
+  }
+  .week-dot.done {
+    background: linear-gradient(135deg, var(--c3), #38f9d7);
+    color: #111; font-weight: 700;
+  }
   .week-dot.today { border: 2px solid var(--c1); }
-  .habit-form { background: var(--card); border-radius: var(--radius); padding: 18px;
-    margin-bottom: 16px; border: 1.5px solid #2a2a4a; }
+  .habit-form {
+    background: var(--card); border-radius: var(--radius);
+    padding: 18px; margin-bottom: 16px; border: 1.5px solid #2a2a4a;
+  }
   .habit-form .row { display: flex; gap: 10px; margin-top: 10px; }
   .emoji-picker { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-  .emoji-opt { font-size: 24px; cursor: pointer; padding: 6px; border-radius: 8px;
-    border: 2px solid transparent; background: #2a2a4a; }
+  .emoji-opt {
+    font-size: 24px; cursor: pointer; padding: 6px;
+    border-radius: 8px; border: 2px solid transparent; background: #2a2a4a;
+  }
   .emoji-opt.selected { border-color: var(--c1); background: #6C63FF33; }
 
   /* NOTES */
   .notes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .note-card { border-radius: var(--radius); padding: 16px; cursor: pointer;
-    min-height: 120px; display: flex; flex-direction: column; justify-content: space-between;
-    border: 1.5px solid transparent; }
+  .note-card {
+    border-radius: var(--radius); padding: 16px; cursor: pointer;
+    min-height: 120px; display: flex; flex-direction: column;
+    justify-content: space-between; border: 1.5px solid transparent;
+    transition: transform .2s;
+  }
   .note-card:active { transform: scale(.97); }
   .note-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
-  .note-card p { font-size: 12px; opacity: .8; flex: 1; overflow: hidden;
-    display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; }
+  .note-card p {
+    font-size: 12px; opacity: .8; flex: 1; overflow: hidden;
+    display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+  }
   .note-colors { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
-  .color-dot { width: 28px; height: 28px; border-radius: 50%; cursor: pointer; border: 3px solid transparent; }
+  .color-dot {
+    width: 28px; height: 28px; border-radius: 50%;
+    cursor: pointer; border: 3px solid transparent; transition: all .2s;
+  }
   .color-dot.selected { border-color: #fff; transform: scale(1.2); }
-  .note-editor { position: fixed; inset: 0; background: var(--bg); z-index: 200;
-    padding: 20px; display: none; flex-direction: column; gap: 14px; }
+  .note-editor {
+    position: fixed; inset: 0; background: var(--bg); z-index: 200;
+    padding: 20px; display: none; flex-direction: column; gap: 14px;
+  }
   .note-editor.open { display: flex; }
   .note-editor-header { display: flex; justify-content: space-between; align-items: center; }
   .note-editor textarea { flex: 1; min-height: 0; }
@@ -240,21 +271,29 @@
   .empty-state { text-align: center; padding: 40px 20px; color: var(--sub); }
   .empty-state .e-icon { font-size: 48px; margin-bottom: 12px; }
   .empty-state p { font-size: 14px; }
-  .fab { position: fixed; bottom: 80px; right: 20px; width: 56px; height: 56px;
-    border-radius: 50%; background: linear-gradient(135deg, var(--c1), var(--c2));
+  .fab {
+    position: fixed; bottom: 80px; right: 20px;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--c1), var(--c2));
     border: none; color: #fff; font-size: 28px; cursor: pointer;
-    box-shadow: 0 4px 20px rgba(108,99,255,.5); display: none;
-    align-items: center; justify-content: center; z-index: 50; }
+    box-shadow: 0 4px 20px rgba(108,99,255,.5);
+    display: none; align-items: center; justify-content: center; z-index: 50;
+  }
+  .fab:active { transform: scale(.92); }
   .toggle-form { display: none; }
   .toggle-form.open { display: block; }
-  #installBanner { display: none; background: linear-gradient(135deg, var(--c1), var(--c2));
+  #installBanner {
+    display: none; background: linear-gradient(135deg, var(--c1), var(--c2));
     border-radius: var(--radius); padding: 16px; margin: 16px;
-    align-items: center; gap: 14px; }
+    align-items: center; gap: 14px;
+  }
   #installBanner.show { display: flex; }
-  #installBanner h3 { font-size: 15px; font-weight: 700; }
-  #installBanner p { font-size: 12px; opacity: .85; margin-top: 3px; flex: 1; }
-  #installBanner button { background: #fff; color: var(--c1); border: none;
-    border-radius: 10px; padding: 10px 16px; font-weight: 700; font-size: 13px; cursor: pointer; }
+  #installBanner h3 { font-size: 15px; font-weight: 700; flex: 1; }
+  #installBanner button {
+    background: #fff; color: var(--c1); border: none;
+    border-radius: 10px; padding: 10px 16px;
+    font-weight: 700; font-size: 13px; cursor: pointer;
+  }
 
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-thumb { background: #2a2a4a; border-radius: 4px; }
@@ -263,31 +302,17 @@
 </head>
 <body>
 
-<!-- ══ NAME MODAL ══ -->
-<div id="nameModal" class="hidden">
-  <div class="name-box">
-    <span class="emoji">👋</span>
-    <h2>Welcome to MyLife!</h2>
-    <p>What should we call you?<br/>Enter your name to get started!</p>
-    <input type="text" id="nameInput" placeholder="Your name..." maxlength="20" />
-    <button id="saveNameBtn">Let's Go! 🚀</button>
-  </div>
-</div>
-
-<!-- ══ INSTALL BANNER ══ -->
+<!-- INSTALL BANNER -->
 <div id="installBanner">
-  <div style="flex:1;">
-    <h3>📲 Add to Home Screen</h3>
-    <p>Install MyLife for quick access!</p>
-  </div>
+  <h3>📲 Install MyLife App</h3>
   <button onclick="installApp()">Install</button>
 </div>
 
-<!-- ══ HOME PAGE ══ -->
+<!-- HOME PAGE -->
 <div id="page-home" class="page active">
   <div class="page-header">
     <div class="home-greeting">👋 Hello, <span class="gradient-text" id="userName">Friend!</span></div>
-    <div style="display:flex;justify-content:space-between;align-items:center;">
+    <div class="home-top-row">
       <div class="home-date" id="homeDate"></div>
       <button class="change-name-btn" onclick="changeName()">✏️ Change Name</button>
     </div>
@@ -310,7 +335,7 @@
   </div>
 </div>
 
-<!-- ══ TASKS PAGE ══ -->
+<!-- TASKS PAGE -->
 <div id="page-tasks" class="page">
   <div class="page-header">
     <h1 class="gradient-text">📋 Daily Tasks</h1>
@@ -345,7 +370,7 @@
   <div id="taskList"></div>
 </div>
 
-<!-- ══ GOALS PAGE ══ -->
+<!-- GOALS PAGE -->
 <div id="page-goals" class="page">
   <div class="page-header">
     <h1 class="gradient-text">🎯 Goal Tracker</h1>
@@ -375,7 +400,7 @@
   <div id="goalList"></div>
 </div>
 
-<!-- ══ HABITS PAGE ══ -->
+<!-- HABITS PAGE -->
 <div id="page-habits" class="page">
   <div class="page-header">
     <h1 class="gradient-text">🔥 Habit Tracker</h1>
@@ -398,7 +423,7 @@
   <div id="habitList"></div>
 </div>
 
-<!-- ══ NOTES PAGE ══ -->
+<!-- NOTES PAGE -->
 <div id="page-notes" class="page">
   <div class="page-header">
     <h1 class="gradient-text">📝 Notes & Ideas</h1>
@@ -409,7 +434,7 @@
   <div class="notes-grid" id="noteGrid"></div>
 </div>
 
-<!-- ══ NOTE EDITOR ══ -->
+<!-- NOTE EDITOR -->
 <div class="note-editor" id="noteEditor">
   <div class="note-editor-header">
     <button class="btn btn-ghost btn-sm" onclick="closeNoteEditor()">← Back</button>
@@ -427,10 +452,10 @@
   <textarea id="noteContent" placeholder="Write your thoughts, ideas, anything..."></textarea>
 </div>
 
-<!-- ══ FAB ══ -->
+<!-- FAB -->
 <button class="fab" id="fabBtn" onclick="fabAction()">＋</button>
 
-<!-- ══ BOTTOM NAV ══ -->
+<!-- BOTTOM NAV -->
 <nav class="nav">
   <button class="nav-btn active" onclick="goTo('home')" id="nav-home"><span class="icon">🏠</span><span>Home</span></button>
   <button class="nav-btn" onclick="goTo('tasks')" id="nav-tasks"><span class="icon">✅</span><span>Tasks</span></button>
@@ -454,61 +479,38 @@ const save = () => {
   DB.set('habits',habits); DB.set('notes',notes);
 };
 
-// ══ NAME MODAL - 100% FIXED ══
-const nameModal = document.getElementById('nameModal');
-const nameInput = document.getElementById('nameInput');
-const saveNameBtn = document.getElementById('saveNameBtn');
-
-function showModal() {
-  nameModal.classList.remove('hidden');
-}
-function hideModal() {
-  nameModal.classList.add('hidden');
-}
-function saveName() {
-  const name = nameInput.value.trim();
-  if(!name) {
-    nameInput.classList.add('error');
-    nameInput.placeholder = 'Please enter your name!';
-    nameInput.focus();
-    return;
-  }
-  nameInput.classList.remove('error');
-  localStorage.setItem('ml_username', name);
-  document.getElementById('userName').textContent = name + '!';
-  hideModal();
-  updateHome();
-}
-function changeName() {
-  nameInput.value = localStorage.getItem('ml_username') || '';
-  nameInput.classList.remove('error');
-  showModal();
-  setTimeout(() => nameInput.focus(), 100);
-}
+// ══ NAME - USING PROMPT (100% WORKS) ══
 function loadName() {
   const name = localStorage.getItem('ml_username');
-  if(name) {
-    document.getElementById('userName').textContent = name + '!';
-    hideModal();
+  if(name && name.trim()) {
+    document.getElementById('userName').textContent = name.trim() + '!';
   } else {
-    showModal();
-    setTimeout(() => nameInput.focus(), 300);
+    askName();
   }
 }
 
-// Button click event - attached via JS not onclick
-saveNameBtn.addEventListener('click', function(e) {
-  e.preventDefault();
-  saveName();
-});
+function askName() {
+  setTimeout(function() {
+    const name = prompt('👋 Welcome to MyLife!\n\nWhat should we call you?');
+    if(name && name.trim()) {
+      localStorage.setItem('ml_username', name.trim());
+      document.getElementById('userName').textContent = name.trim() + '!';
+      updateHome();
+    } else {
+      askName();
+    }
+  }, 500);
+}
 
-// Enter key support
-nameInput.addEventListener('keydown', function(e) {
-  if(e.key === 'Enter') {
-    e.preventDefault();
-    saveName();
+function changeName() {
+  const current = localStorage.getItem('ml_username') || '';
+  const name = prompt('✏️ Change your name:', current);
+  if(name && name.trim()) {
+    localStorage.setItem('ml_username', name.trim());
+    document.getElementById('userName').textContent = name.trim() + '!';
+    updateHome();
   }
-});
+}
 
 // ══ NAVIGATION ══
 let currentPage = 'home';
@@ -520,17 +522,17 @@ function goTo(page) {
   currentPage = page;
   const fab = document.getElementById('fabBtn');
   fab.style.display = ['tasks','goals','habits','notes'].includes(page) ? 'flex' : 'none';
-  if(page==='home') updateHome();
-  if(page==='tasks') renderTasks();
-  if(page==='goals') renderGoals();
+  if(page==='home')   updateHome();
+  if(page==='tasks')  renderTasks();
+  if(page==='goals')  renderGoals();
   if(page==='habits') renderHabits();
-  if(page==='notes') renderNotes();
+  if(page==='notes')  renderNotes();
 }
 function fabAction() {
-  if(currentPage==='tasks') openTaskForm();
-  else if(currentPage==='goals') openGoalForm();
+  if(currentPage==='tasks')  openTaskForm();
+  else if(currentPage==='goals')  openGoalForm();
   else if(currentPage==='habits') openHabitForm();
-  else if(currentPage==='notes') openNoteEditor();
+  else if(currentPage==='notes')  openNoteEditor();
 }
 
 // ══ HOME ══
@@ -538,14 +540,14 @@ function updateHome() {
   const now = new Date();
   document.getElementById('homeDate').textContent =
     now.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-  document.getElementById('statTasks').textContent = tasks.filter(t=>t.done).length;
+  document.getElementById('statTasks').textContent   = tasks.filter(t=>t.done).length;
   document.getElementById('statPending').textContent = tasks.filter(t=>!t.done).length;
-  document.getElementById('statHabits').textContent = habits.filter(h=>h.log&&h.log[todayKey()]).length;
-  document.getElementById('statNotes').textContent = notes.length;
+  document.getElementById('statHabits').textContent  = habits.filter(h=>h.log&&h.log[todayKey()]).length;
+  document.getElementById('statNotes').textContent   = notes.length;
   const ht = document.getElementById('homeTasks');
   const list = tasks.filter(t=>!t.done).slice(0,5);
   if(!list.length) {
-    ht.innerHTML='<div class="empty-state"><div class="e-icon">🎉</div><p>All done! Great job!</p></div>';
+    ht.innerHTML = '<div class="empty-state"><div class="e-icon">🎉</div><p>All done! Great job!</p></div>';
     return;
   }
   ht.innerHTML = list.map(t=>`
@@ -567,7 +569,7 @@ function addTask() {
   const text = document.getElementById('taskInput').value.trim();
   if(!text) return;
   tasks.unshift({
-    id:uid(), text,
+    id: uid(), text,
     priority: document.getElementById('taskPriority').value,
     category: document.getElementById('taskCategory').value,
     done: false, created: Date.now()
@@ -576,13 +578,15 @@ function addTask() {
   document.getElementById('taskInput').value = '';
   document.getElementById('taskForm').classList.remove('open');
   renderTasks();
+  updateHome();
 }
 function toggleTask(id) {
   const t = tasks.find(t=>t.id===id);
   if(t) { t.done=!t.done; save(); renderTasks(); updateHome(); }
 }
 function deleteTask(id) {
-  tasks = tasks.filter(t=>t.id!==id); save(); renderTasks(); updateHome();
+  tasks = tasks.filter(t=>t.id!==id);
+  save(); renderTasks(); updateHome();
 }
 function filterTasks(f, el) {
   taskFilter = f;
@@ -593,9 +597,9 @@ function filterTasks(f, el) {
 function renderTasks() {
   let list = [...tasks];
   if(taskFilter==='pending') list = list.filter(t=>!t.done);
-  else if(taskFilter==='done') list = list.filter(t=>t.done);
-  else if(taskFilter==='high') list = list.filter(t=>t.priority==='high');
-  else if(taskFilter==='work') list = list.filter(t=>t.category==='work');
+  else if(taskFilter==='done')    list = list.filter(t=>t.done);
+  else if(taskFilter==='high')    list = list.filter(t=>t.priority==='high');
+  else if(taskFilter==='work')    list = list.filter(t=>t.category==='work');
   const el = document.getElementById('taskList');
   if(!list.length) {
     el.innerHTML='<div class="empty-state"><div class="e-icon">✅</div><p>No tasks here!</p></div>';
@@ -622,7 +626,7 @@ function addGoal() {
   const title = document.getElementById('goalTitle').value.trim();
   if(!title) return;
   goals.unshift({
-    id:uid(), title,
+    id: uid(), title,
     category: document.getElementById('goalCat').value,
     deadline: document.getElementById('goalDeadline').value,
     progress: parseInt(document.getElementById('goalProgress').value),
@@ -641,12 +645,14 @@ function updateGoalProgress(id, val) {
   if(g) { g.progress = parseInt(val); save(); }
   document.getElementById('gp_'+id).textContent = val+'%';
 }
-function deleteGoal(id) { goals = goals.filter(g=>g.id!==id); save(); renderGoals(); }
+function deleteGoal(id) {
+  goals = goals.filter(g=>g.id!==id); save(); renderGoals();
+}
 const gradients = {
-  personal:'linear-gradient(135deg,#6C63FF,#a78bfa)',
-  work:'linear-gradient(135deg,#FF6584,#f97316)',
-  health:'linear-gradient(135deg,#43E97B,#38f9d7)',
-  finance:'linear-gradient(135deg,#F7971E,#FFD200)'
+  personal: 'linear-gradient(135deg,#6C63FF,#a78bfa)',
+  work:     'linear-gradient(135deg,#FF6584,#f97316)',
+  health:   'linear-gradient(135deg,#43E97B,#38f9d7)',
+  finance:  'linear-gradient(135deg,#F7971E,#FFD200)'
 };
 function renderGoals() {
   const el = document.getElementById('goalList');
@@ -694,14 +700,15 @@ function addHabit() {
   const name = document.getElementById('habitName').value.trim();
   if(!name) return;
   habits.push({
-    id:uid(), name, icon:selectedEmoji,
+    id: uid(), name, icon: selectedEmoji,
     freq: document.getElementById('habitFreq').value,
-    streak:0, log:{}, created:Date.now()
+    streak: 0, log: {}, created: Date.now()
   });
   save();
   document.getElementById('habitName').value = '';
   document.getElementById('habitForm').classList.remove('open');
   renderHabits();
+  updateHome();
 }
 function toggleHabit(id) {
   const h = habits.find(h=>h.id===id); if(!h) return;
@@ -715,7 +722,9 @@ function calcStreak(log) {
   while(true) { const k=dateKey(d); if(!log[k]) break; s++; d.setDate(d.getDate()-1); }
   return s;
 }
-function deleteHabit(id) { habits=habits.filter(h=>h.id!==id); save(); renderHabits(); }
+function deleteHabit(id) {
+  habits = habits.filter(h=>h.id!==id); save(); renderHabits(); updateHome();
+}
 function renderHabits() {
   const el = document.getElementById('habitList');
   if(!habits.length) {
@@ -754,11 +763,11 @@ function openNoteEditor(id=null) {
   editingNoteId = id;
   if(id) {
     const n = notes.find(n=>n.id===id);
-    document.getElementById('noteTitle').value = n.title;
+    document.getElementById('noteTitle').value   = n.title;
     document.getElementById('noteContent').value = n.content;
     selectedColor = n.color||'n1';
   } else {
-    document.getElementById('noteTitle').value = '';
+    document.getElementById('noteTitle').value   = '';
     document.getElementById('noteContent').value = '';
     selectedColor = 'n1';
   }
@@ -767,14 +776,16 @@ function openNoteEditor(id=null) {
   document.getElementById('noteEditor').classList.add('open');
   document.getElementById('noteTitle').focus();
 }
-function closeNoteEditor() { document.getElementById('noteEditor').classList.remove('open'); }
+function closeNoteEditor() {
+  document.getElementById('noteEditor').classList.remove('open');
+}
 function selectColor(el) {
   selectedColor = el.dataset.color;
   document.querySelectorAll('.color-dot').forEach(d=>d.classList.remove('selected'));
   el.classList.add('selected');
 }
 function saveNote() {
-  const title = document.getElementById('noteTitle').value.trim()||'Untitled';
+  const title   = document.getElementById('noteTitle').value.trim()||'Untitled';
   const content = document.getElementById('noteContent').value.trim();
   if(!content && title==='Untitled') return;
   if(editingNoteId) {
@@ -785,7 +796,9 @@ function saveNote() {
   }
   save(); closeNoteEditor(); renderNotes(); updateHome();
 }
-function deleteNote(id) { notes=notes.filter(n=>n.id!==id); save(); renderNotes(); updateHome(); }
+function deleteNote(id) {
+  notes = notes.filter(n=>n.id!==id); save(); renderNotes(); updateHome();
+}
 function renderNotes() {
   const q = (document.getElementById('noteSearch').value||'').toLowerCase();
   let list = notes.filter(n=>!q||(n.title+n.content).toLowerCase().includes(q));
@@ -796,7 +809,10 @@ function renderNotes() {
   }
   el.innerHTML = list.map(n=>`
     <div class="note-card ${n.color||'n1'}" onclick="openNoteEditor('${n.id}')">
-      <div><h4>${n.title}</h4><p>${n.content}</p></div>
+      <div>
+        <h4>${n.title}</h4>
+        <p>${n.content}</p>
+      </div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;">
         <span style="font-size:10px;opacity:.6;">${new Date(n.updated||n.created).toLocaleDateString()}</span>
         <button style="background:none;border:none;color:#ff4466;font-size:16px;cursor:pointer;"

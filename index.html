@@ -63,7 +63,7 @@
 
   /* HOME */
   .home-greeting { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
-  .home-date { color: var(--sub); font-size: 13px; margin-bottom: 22px; }
+  .home-date { color: var(--sub); font-size: 13px; }
   .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 22px; }
   .stat-card { border-radius: var(--radius); padding: 18px; display: flex; flex-direction: column; gap: 6px; }
   .stat-card .num { font-size: 32px; font-weight: 900; }
@@ -105,8 +105,7 @@
   .task-add-form .row select { flex: 1; }
 
   /* GOALS */
-  .goal-card { background: var(--card); border-radius: var(--radius); padding: 18px; margin-bottom: 14px;
-    border: 1.5px solid #2a2a4a; }
+  .goal-card { background: var(--card); border-radius: var(--radius); padding: 18px; margin-bottom: 14px; border: 1.5px solid #2a2a4a; }
   .goal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
   .goal-title { font-size: 17px; font-weight: 700; }
   .goal-cat { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 700; }
@@ -117,7 +116,6 @@
   .progress-bar { height: 8px; background: #2a2a4a; border-radius: 10px; overflow: hidden; margin: 10px 0; }
   .progress-fill { height: 100%; border-radius: 10px; transition: width .5s; }
   .goal-footer { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--sub); }
-  .goal-actions { display: flex; gap: 8px; }
   .goal-form { background: var(--card); border-radius: var(--radius); padding: 18px; margin-bottom: 16px; border: 1.5px solid #2a2a4a; }
   .goal-form .row { display: flex; gap: 10px; margin-top: 10px; }
   .goal-form .row > * { flex: 1; }
@@ -126,8 +124,7 @@
   .progress-input span { min-width: 40px; text-align: right; font-weight: 700; color: var(--c1); }
 
   /* HABITS */
-  .habit-card { background: var(--card); border-radius: var(--radius); padding: 16px; margin-bottom: 12px;
-    border: 1.5px solid #2a2a4a; }
+  .habit-card { background: var(--card); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; border: 1.5px solid #2a2a4a; }
   .habit-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
   .habit-icon { font-size: 28px; }
   .habit-info { flex: 1; }
@@ -152,8 +149,7 @@
   /* NOTES */
   .notes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .note-card { border-radius: var(--radius); padding: 16px; cursor: pointer; transition: all .2s;
-    min-height: 120px; display: flex; flex-direction: column; justify-content: space-between;
-    border: 1.5px solid transparent; }
+    min-height: 120px; display: flex; flex-direction: column; justify-content: space-between; border: 1.5px solid transparent; }
   .note-card:active { transform: scale(.97); }
   .note-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
   .note-card p { font-size: 12px; opacity: .8; flex: 1; overflow: hidden;
@@ -194,6 +190,24 @@
     padding: 10px 16px; font-weight: 700; font-size: 13px; cursor: pointer; white-space: nowrap; }
   #installBanner { display: none; }
 
+  /* NAME MODAL */
+  .name-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 999;
+    display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .name-modal-box { background: #1a1a2e; border-radius: 24px; padding: 32px; width: 100%;
+    max-width: 380px; border: 1.5px solid #2a2a4a; text-align: center; }
+  .name-modal-box .modal-icon { font-size: 56px; margin-bottom: 16px; }
+  .name-modal-box h2 { font-size: 22px; font-weight: 800; margin-bottom: 8px;
+    background: linear-gradient(135deg, #6C63FF, #FF6584); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .name-modal-box p { color: #9090b0; font-size: 14px; margin-bottom: 24px; }
+  .name-modal-box input { text-align: center; font-size: 18px; margin-bottom: 16px; }
+  .name-modal-btn { width: 100%; background: linear-gradient(135deg, #6C63FF, #FF6584);
+    border: none; border-radius: 12px; padding: 14px; font-size: 16px;
+    font-weight: 700; color: #fff; cursor: pointer; transition: all .2s; }
+  .name-modal-btn:active { transform: scale(.97); }
+  .change-name-btn { background: none; border: none; color: var(--sub); font-size: 12px;
+    cursor: pointer; padding: 4px 8px; }
+  .change-name-btn:hover { color: var(--text); }
+
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: #2a2a4a; border-radius: 4px; }
@@ -204,6 +218,17 @@
 </style>
 </head>
 <body>
+
+<!-- NAME SETUP MODAL -->
+<div class="name-modal" id="nameModal">
+  <div class="name-modal-box">
+    <div class="modal-icon">👋</div>
+    <h2>Welcome to MyLife!</h2>
+    <p>What should we call you?</p>
+    <input type="text" id="nameInput" placeholder="Enter your name..." maxlength="20" />
+    <button class="name-modal-btn" onclick="saveName()">Let's Go! 🚀</button>
+  </div>
+</div>
 
 <!-- INSTALL BANNER -->
 <div id="installBanner" class="install-banner" style="margin:16px;border-radius:18px;">
@@ -217,8 +242,11 @@
 <!-- HOME PAGE -->
 <div id="page-home" class="page active">
   <div class="page-header">
-    <div class="home-greeting">👋 Hello, <span class="gradient-text">Srini!</span></div>
-    <div class="home-date" id="homeDate"></div>
+    <div class="home-greeting">👋 Hello, <span class="gradient-text" id="userName">Friend!</span></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <div class="home-date" id="homeDate"></div>
+      <button class="change-name-btn" onclick="changeName()">✏️ Change Name</button>
+    </div>
   </div>
   <div class="stats-grid">
     <div class="stat-card s1"><div class="num" id="statTasks">0</div><div class="lbl">✅ Tasks Done</div></div>
@@ -377,6 +405,40 @@ let goals  = DB.get('goals');
 let habits = DB.get('habits');
 let notes  = DB.get('notes');
 const save = () => { DB.set('tasks',tasks); DB.set('goals',goals); DB.set('habits',habits); DB.set('notes',notes); };
+
+// NAME SETUP
+function saveName() {
+  const name = document.getElementById('nameInput').value.trim();
+  if(!name) {
+    document.getElementById('nameInput').style.borderColor='#ff4466';
+    return;
+  }
+  localStorage.setItem('mylife_username', name);
+  document.getElementById('userName').textContent = name + '!';
+  document.getElementById('nameModal').style.display = 'none';
+}
+
+function changeName() {
+  const current = localStorage.getItem('mylife_username') || '';
+  document.getElementById('nameInput').value = current;
+  document.getElementById('nameModal').style.display = 'flex';
+  setTimeout(() => document.getElementById('nameInput').focus(), 300);
+}
+
+function loadName() {
+  const name = localStorage.getItem('mylife_username');
+  if(name) {
+    document.getElementById('userName').textContent = name + '!';
+    document.getElementById('nameModal').style.display = 'none';
+  } else {
+    document.getElementById('nameModal').style.display = 'flex';
+    setTimeout(() => document.getElementById('nameInput').focus(), 300);
+  }
+}
+
+document.getElementById('nameInput').addEventListener('keypress', function(e) {
+  if(e.key === 'Enter') saveName();
+});
 
 // NAVIGATION
 let currentPage = 'home';
@@ -635,7 +697,9 @@ window.addEventListener('beforeinstallprompt',e=>{
   document.getElementById('installBanner').style.display='flex';
 });
 function installApp(){
-  if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null;document.getElementById('installBanner').style.display='none';});}
+  if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{
+    deferredPrompt=null;document.getElementById('installBanner').style.display='none';
+  });}
 }
 window.addEventListener('appinstalled',()=>{document.getElementById('installBanner').style.display='none';});
 
@@ -649,6 +713,7 @@ if('serviceWorker' in navigator){
 }
 
 // INIT
+loadName();
 updateHome();
 document.getElementById('fabBtn').style.display='none';
 </script>
